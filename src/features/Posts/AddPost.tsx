@@ -1,24 +1,23 @@
 import React, { useState } from "react";
-import { useAppDispatch } from "../../app/hooks";
-import { nanoid } from "@reduxjs/toolkit";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { postAdded } from "./PostsSlice";
 
 export const AddPost: React.FC = () => {
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
+  const [userId, setUserId] = useState<string>("");
+
   const dispatch = useAppDispatch();
+  const users = useAppSelector(state => state.users);
 
   const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value);
   const onChangeContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => setContent(e.target.value);
+  const onChangeUserId = (e: React.ChangeEvent<HTMLSelectElement>) => setUserId(e.target.value);
 
   const onClickSubmitPost = () => {
-    if(title && content) {
+    if(title && content && userId) {
       dispatch(
-        postAdded({
-          id: nanoid(),
-          title,
-          content
-        })
+        postAdded(title, content, userId)
       )
     } else {
       alert("title, contentは必須です。")
@@ -26,6 +25,13 @@ export const AddPost: React.FC = () => {
     setTitle("");
     setContent("");
   }
+
+  const canSave = title && content && userId;
+
+  const usersOptions = users.map((user) => (
+    <option value={user.id} key={user.id}>{user.name}</option>
+  ));
+
 
   return (
     <section>
@@ -35,7 +41,12 @@ export const AddPost: React.FC = () => {
         <input type="text" id="postTitle" name="postTitle" value={title} onChange={onChangeTitle} />
         <label htmlFor="postContent">Content:</label>
         <textarea id="postContent" name="postContent" value={content} onChange={onChangeContent}></textarea>
-        <button type="button" onClick={onClickSubmitPost}>submit</button>
+        <label htmlFor="userId">author:</label>
+        <select name="userId" id="userId" onChange={onChangeUserId}>
+          <option value=""></option>
+          {usersOptions}
+        </select>
+        <button type="button" onClick={onClickSubmitPost} disabled={!canSave}>submit</button>
       </form>
     </section>
   )
