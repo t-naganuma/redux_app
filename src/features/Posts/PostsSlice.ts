@@ -7,10 +7,7 @@ type PostsSlice = {
   userId: string;
 }
 
-const initialState: PostsSlice[] = [
-  { id: "1", title: "title1", content: "test", userId: "1" },
-  { id: "2", title: "title2", content: "testtest", userId: "2" }
-]
+const initialState: PostsSlice[] = []
 
 const postSlice = createSlice({
   name: "posts",
