@@ -1,5 +1,6 @@
 import React from "react";
 import { useAppSelector } from "../../app/hooks";
+import { PostsAuthor } from "./PostsAuthor";
 
 export const PostsList: React.FC = () => {
   const posts = useAppSelector(state => state.posts);
@@ -8,6 +9,7 @@ export const PostsList: React.FC = () => {
     <article key={post.id}>
       <h3>{post.title}</h3>
       <p>{post.content}</p>
+      <PostsAuthor userId={post.userId} />
     </article>
   ))
 
