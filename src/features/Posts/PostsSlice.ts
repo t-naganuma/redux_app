@@ -1,5 +1,5 @@
-import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
-
+import { createAsyncThunk, createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
+import axios from "axios";
 type PostsSlice = {
   id: string;
   title: string;
@@ -8,6 +8,14 @@ type PostsSlice = {
 }
 
 const initialState: PostsSlice[] = []
+
+export const fetchPosts = createAsyncThunk<PostsSlice>(
+  "posts/fetchPosts",
+  async (): Promise<PostsSlice> => {
+    const res = await axios.get("http://localhost:8888/posts");
+    return await res.data;
+  }
+);
 
 const postSlice = createSlice({
   name: "posts",
@@ -28,6 +36,11 @@ const postSlice = createSlice({
         }
       }
     }
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchPosts.fulfilled, (state, action) => {
+      return state = state.concat(action.payload)
+    })
   }
 });
 

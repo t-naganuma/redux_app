@@ -1,0 +1,8 @@
+{
+  "posts": [
+    {"id": "1", "title": "json-server", "content": "aiueo", "userId": "1"},
+    {"id": "2", "title": "title2", "content": "abc", "userId": "1"},
+    {"id": "3", "title": "title3", "content": "def", "userId": "1"},
+    {"id": "4", "title": "title4", "content": "ghi", "userId": "2"}
+  ]
+}
