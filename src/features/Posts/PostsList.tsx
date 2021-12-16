@@ -14,8 +14,8 @@ export const PostsList: React.FC = () => {
   ))
 
   return (
-    <section>
-      <h1>Posts</h1>
+    <section className="posts_list">
+      <h2>Posts</h2>
       {renderedPosts}
     </section>
   )

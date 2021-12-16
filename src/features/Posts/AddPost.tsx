@@ -34,7 +34,7 @@ export const AddPost: React.FC = () => {
 
 
   return (
-    <section>
+    <section className="form_wrap">
       <h2>Add New Post</h2>
       <form>
         <label htmlFor="postTitle">PostTitle:</label>
