@@ -1,21 +1,21 @@
 import React, { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { PostsAuthor } from "./PostsAuthor";
-import { fetchPosts } from "./PostsSlice";
+import { useDispatch, useSelector } from "react-redux";
+// import { PostsAuthor } from "./PostsAuthor";
+import { fetchPosts, postsSelector } from "./PostsSlice";
 
 export const PostsList: React.FC = () => {
-  const posts = useAppSelector(state => state.posts);
-  const dispatch = useAppDispatch();
+  const posts = useSelector(postsSelector);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchPosts());
   }, [dispatch])
 
-  const renderedPosts = posts.map(post => (
+  const renderedPosts = posts.map((post: any) => (
     <article key={post.id}>
       <h3>{post.title}</h3>
       <p>{post.content}</p>
-      <PostsAuthor userId={post.userId} />
+      {/* <PostsAuthor userId={post.userId} /> */}
     </article>
   ))
 

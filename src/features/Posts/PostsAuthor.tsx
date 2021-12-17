@@ -1,12 +1,15 @@
 import React from "react";
-import { useAppSelector } from "../../app/hooks";
+import { useSelector } from "react-redux";
+import { usersSelector } from "../Users/UsersSlice";
 
 type Props = {
   userId: string;
 }
 
 export const PostsAuthor: React.FC<Props> = ({ userId }) => {
-  const author = useAppSelector(state => state.users.find(user => user.id === userId));
+  const users = useSelector(usersSelector);
+  const author = users.find((user: any) => user.id === userId);
+  // const author = useAppSelector(state => state.users.find(user => user.id === userId));
 
   return (
     <span>by {author ? author.name : "Unknown author"}</span>
