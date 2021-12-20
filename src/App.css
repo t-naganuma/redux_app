@@ -1,39 +1,69 @@
 .App {
   text-align: center;
+  padding: 0 0 80px 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h2 {
+  font-size: 40px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-float infinite 3s ease-in-out;
-  }
+.form_wrap {
+  margin: 0 auto;
+  max-width: 800px;
+  width: 100%;
 }
 
-.App-header {
-  min-height: 100vh;
+form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
 }
 
-.App-link {
-  color: rgb(112, 76, 182);
+label {
+  font-size: 24px;
+  text-align: left;
 }
 
-@keyframes App-logo-float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(10px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
+label:not(:first-child) {
+  margin: 24px 0 0 0;
+}
+
+input, textarea, select {
+  margin: 4px 0 0 0;
+}
+
+input, select {
+  font-size: 16px;
+  padding: 8px;
+}
+
+textarea {
+  padding: 8px;
+}
+
+button {
+  cursor: pointer;
+  margin: 20px auto 0;
+  padding: 16px;
+  max-width: 400px;
+  width: 100%;
+}
+
+button:disabled {
+  cursor: auto;
+}
+
+.posts_list {
+  margin: 24px auto 0;
+  max-width: 800px;
+  width: 100%;
+}
+
+.posts_list > article {
+  border: 1px solid #000;
+  border-radius: 8px;
+  padding: 8px 0;
+}
+
+.posts_list > article:not(:first-child) {
+  margin: 24px 0 0 0;
 }
