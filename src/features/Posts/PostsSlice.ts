@@ -20,12 +20,13 @@ export const fetchPosts = createAsyncThunk<PostsSlice>(
     return await res.data;
   }
 );
-export const selectPosts = (state: RootState) => {
+
+export const statePosts = (state: RootState) => {
   return state.posts;
 }
 
 export const postsSelector = createSelector(
-  selectPosts,
+  statePosts,
   (post) => post
 )
 

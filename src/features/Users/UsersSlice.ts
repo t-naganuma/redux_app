@@ -1,4 +1,6 @@
 import { createSlice, createSelector } from "@reduxjs/toolkit";
+import axios from "axios";
+import { RootState } from "../../app/store";
 
 type UsersSlice = {
   id: string;
@@ -10,9 +12,13 @@ const initialState: UsersSlice[] = [
   {id: "2", name: "John"}
 ]
 
+const stateUsers = (state: RootState) => {
+  return state.users;
+}
+
 export const usersSelector = createSelector(
-  [state => state.users],
-  users => users
+  stateUsers,
+  (user) => user
 )
 
 export const usersSlice = createSlice({
